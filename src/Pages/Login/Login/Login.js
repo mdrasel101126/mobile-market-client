@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Context/UserContext";
 import Spinner from "../../Shared/Spinner/Spinner";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useSecretToken from "../../../hooks/useSecretToken";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { loginUser, googleSignUp } = useContext(AuthContext);
@@ -12,36 +13,45 @@ const Login = () => {
   const [spinner, setSpinner] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [token] = useSecretToken(userEmail);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const handleRegister = (data) => {
+  const handleLogin = (data) => {
     setSpinner(true);
     setLoginError("");
     loginUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
         setUserEmail(data.email);
+        setSpinner(false);
+        toast.success("Successfully Registered");
         //console.log(result.user);
       })
       .catch((error) => {
         console.log(error);
+        setSpinner(false);
         setLoginError(error.message);
       });
   };
   const handleGoogleSignUp = () => {
-    setSpinner(true);
-    setLoginError("");
     googleSignUp()
       .then((result) => {
         const user = result.user;
         saveUser(user.displayName, user.email, "user");
-        console.log(result.user);
+        console.log(user);
       })
       .catch((error) => {
+        setSpinner(false);
         setLoginError(error.message);
       });
   };
@@ -59,8 +69,12 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         setUserEmail(email);
+        setSpinner(false);
+        toast.success("Successfully Registered");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setSpinner(false);
+      });
   };
 
   return (
@@ -71,7 +85,7 @@ const Login = () => {
           Please Login
         </h1>
         <form
-          onSubmit={handleSubmit(handleRegister)}
+          onSubmit={handleSubmit(handleLogin)}
           className="flex flex-col gap-4"
         >
           <div className="form-control w-full">

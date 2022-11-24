@@ -58,10 +58,10 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setSpinner(false);
-        toast.success("Successfully Registered");
         setUserEmail(email);
         console.log(data);
+        setSpinner(false);
+        toast.success("Successfully Registered");
       })
       .catch((err) => {
         setSpinner(false);
@@ -164,7 +164,7 @@ const Register = () => {
               {...register("role")}
             >
               <option value="user">User</option>
-              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
             </select>
           </div>
           {registerError && <p className="text-red-500">{registerError}</p>}
