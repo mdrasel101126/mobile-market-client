@@ -95,22 +95,6 @@ const Register = () => {
               </p>
             )}
           </div>
-          {/* <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Image</span>
-          </label>
-
-          <input
-            type="file"
-            className="input input-bordered w-full"
-            {...register("image", { required: "Image is Required" })}
-          />
-          {errors.image && (
-            <p>
-              <small className="text-red-600">{errors.image.message}</small>
-            </p>
-          )}
-        </div> */}
 
           <div className="form-control w-full">
             <label className="label">

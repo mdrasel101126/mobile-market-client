@@ -37,7 +37,6 @@ const UserContext = ({ children }) => {
   const logOut = () => {
     setLoading(true);
     localStorage.removeItem("mobile-master-sectret");
-    //localStorage.removeItem("genious-token");
     return signOut(auth);
   };
   const updateUserProfile = (name) => {
