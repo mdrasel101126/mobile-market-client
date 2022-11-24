@@ -174,36 +174,3 @@ const Register = () => {
 };
 
 export default Register;
-
-/* const image = data.image[0];
-    //console.log(image);
-    const formData = new FormData();
-    formData.append("image", image);
-    fetch(
-      `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_ImageBB_KEY}`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
-      .then((res) => res.json())
-      .then((formdata) => {
-        console.log(formdata);
-        createUser(data.email, data.password)
-          .then((result) => {
-            updateUserProfile(data.name, formdata.data.display_url)
-              .then((res) => {
-                //success
-                saveUser(data.name, data.email);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      }); */

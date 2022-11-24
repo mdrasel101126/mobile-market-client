@@ -13,14 +13,54 @@ const MyProducts = () => {
       );
       const data = await res.json();
       console.log(data);
+      return data;
     },
   });
   if (isLoading) {
     return <Spinner></Spinner>;
   }
   return (
-    <div>
-      <h1>This is my products</h1>
+    <div className="">
+      <h1 className="text-2xl font-bold text-blue-800 my-8 text-center">
+        My All Products
+      </h1>
+      <div className="overflow-x-auto">
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Post Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {myProducts &&
+              myProducts.map((product) => (
+                <tr key={product._id}>
+                  <th>
+                    <button className="btn btn-warning btn-xs text-red-700">
+                      X
+                    </button>
+                  </th>
+                  <td>{product.productName}</td>
+                  <td>{product.price}</td>
+                  <td>{product.postDate}</td>
+                  <td>
+                    {product.isSold ? (
+                      <p className="text-green-800">Sold</p>
+                    ) : (
+                      <button className="btn bg-primary bg-gradient-to-r from-primary to-secondary btn-sm">
+                        Available
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

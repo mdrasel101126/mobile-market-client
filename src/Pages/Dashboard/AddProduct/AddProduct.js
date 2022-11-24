@@ -24,6 +24,7 @@ const AddProduct = () => {
   const handleAddProduct = (data) => {
     setSpinner(true);
     data.sellerEmail = user.email;
+    data.isSold = false;
     //console.log(data);
     data.sellerEmail = user.email;
     const image = data.image[0];
