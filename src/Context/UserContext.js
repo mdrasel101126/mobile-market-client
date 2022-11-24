@@ -18,7 +18,6 @@ const googleProvider = new GoogleAuthProvider();
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [profileUpdate, setProfileUpdate] = useState(false);
   const [isAddService, setIsAddService] = useState(false);
 
   const createUser = (email, password) => {
@@ -37,16 +36,14 @@ const UserContext = ({ children }) => {
   };
   const logOut = () => {
     setLoading(true);
-    localStorage.removeItem("helloFoodies-jwt");
-    setProfileUpdate(false);
+    localStorage.removeItem("mobile-master-sectret");
     //localStorage.removeItem("genious-token");
     return signOut(auth);
   };
-  const updateUserProfile = (name, phothUrl) => {
+  const updateUserProfile = (name) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: phothUrl,
     });
   };
   useEffect(() => {
@@ -58,7 +55,7 @@ const UserContext = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, [profileUpdate]);
+  }, []);
 
   const authInfo = {
     user,
@@ -68,7 +65,6 @@ const UserContext = ({ children }) => {
     googleSignUp,
     logOut,
     updateUserProfile,
-    setProfileUpdate,
     isAddService,
     setIsAddService,
   };

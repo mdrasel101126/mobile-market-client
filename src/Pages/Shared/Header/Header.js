@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/icons/mobile.png";
+import { AuthContext } from "../../../Context/UserContext";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        //
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const items = (
     <React.Fragment>
       <li>
@@ -14,9 +25,21 @@ const Header = () => {
       <li>
         <Link>Blog</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      <>
+        {user?.uid ? (
+          <>
+            <li>
+              <button onClick={handleLogOut} className="btn btn-ghost">
+                Log out
+              </button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        )}
+      </>
     </React.Fragment>
   );
   return (
