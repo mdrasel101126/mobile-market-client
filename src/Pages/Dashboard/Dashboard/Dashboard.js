@@ -65,10 +65,18 @@ const Dashboard = () => {
             </li>
             <li className="mb-4">
               <Link
-                to=""
+                to="/dashboard/allbuyer"
                 className="btn btn-primary bg-gradient-to-r from-primary  to-secondary w-full text-white"
               >
-                My Orders
+                My Buyers
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link
+                to="/dashboard/allseller"
+                className="btn btn-primary bg-gradient-to-r from-primary  to-secondary w-full text-white"
+              >
+                My Sellers
               </Link>
             </li>
           </ul>
