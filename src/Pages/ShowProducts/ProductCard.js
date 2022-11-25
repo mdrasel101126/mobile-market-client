@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCheck } from "react-icons/fa";
 
 const ProductCard = ({ product, setSelectedProduct }) => {
   const {
@@ -24,10 +25,14 @@ const ProductCard = ({ product, setSelectedProduct }) => {
         <p>Original Price: ${originalPrice}</p>
         <p>Years of Use: {usageTime}</p>
         <p>Posted On: {postDate}</p>
-        <p>
-          Seller Name: {sellerName}
-          <span>*</span>
-        </p>
+        <div className="flex flex-row items-center">
+          <p>Seller Name: {sellerName}</p>
+          {sellerVerified && (
+            <p>
+              <FaCheck className="text-blue-700 h-4 w-4 p-[1px] border-2 rounded-full border-blue-700 ml-1 "></FaCheck>
+            </p>
+          )}
+        </div>
 
         <div className="text-center mt-4">
           <label

@@ -45,7 +45,7 @@ const routes = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: "/dashboard/addproduct",
+        path: "/dashboard/myorders",
         element: <MyOrders></MyOrders>,
       },
       {

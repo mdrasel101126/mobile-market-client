@@ -41,7 +41,7 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             <li className="mb-4">
               <Link
-                to="/dashboard/addproduct"
+                to="/dashboard/myorders"
                 className="btn btn-primary bg-gradient-to-r from-primary to-secondary w-full text-white"
               >
                 My Orders
