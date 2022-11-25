@@ -24,6 +24,8 @@ const AddProduct = () => {
   const handleAddProduct = (data) => {
     setSpinner(true);
     data.sellerEmail = user.email;
+    data.sellerName = user.displayName;
+
     data.isSold = false;
     //console.log(data);
     data.sellerEmail = user.email;
@@ -56,6 +58,10 @@ const AddProduct = () => {
               toast.success("Product Added Successfully");
               navigate("/dashboard/myproducts");
             }
+          })
+          .catch((err) => {
+            setSpinner(false);
+            toast.error("Sorry Something Went Wrong");
           });
       })
       .catch((error) => {
@@ -102,13 +108,24 @@ const AddProduct = () => {
           </div>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Price</span>
+              <span className="label-text">Price You Want</span>
             </label>
             <input
               type="text"
               placeholder="Enter Price"
               className="input input-bordered w-full"
               {...register("price", { required: true })}
+            />
+          </div>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Original Price</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Original Price"
+              className="input input-bordered w-full"
+              {...register("originalPrice", { required: true })}
             />
           </div>
           <div className="form-control w-full">
@@ -188,12 +205,23 @@ const AddProduct = () => {
               className="input input-bordered w-full"
               {...register("purchaseDate", { required: true })}
             />
+          </div>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Year of Usage</span>
+            </label>
             <input
-              className="btn btn-primary w-full  bg-gradient-to-r from-primary to-secondary mt-5"
-              type="submit"
-              value="Add Product"
+              type="text"
+              placeholder="Enter Year of Usage"
+              className="input input-bordered w-full"
+              {...register("usageTime", { required: true })}
             />
           </div>
+          <input
+            className="btn btn-primary w-full  bg-gradient-to-r from-primary to-secondary mt-5"
+            type="submit"
+            value="Add Product"
+          />
         </form>
       </div>
     </div>

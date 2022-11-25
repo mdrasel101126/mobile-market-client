@@ -44,6 +44,14 @@ const Dashboard = () => {
                 to="/dashboard/addproduct"
                 className="btn btn-primary bg-gradient-to-r from-primary to-secondary w-full text-white"
               >
+                My Orders
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link
+                to="/dashboard/addproduct"
+                className="btn btn-primary bg-gradient-to-r from-primary to-secondary w-full text-white"
+              >
                 Add Products
               </Link>
             </li>

@@ -1,5 +1,6 @@
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import ShowProducts from "../Pages/ShowProducts/ShowProducts";
 import PrivateRoute from "./PrivateRoute";
@@ -41,6 +42,10 @@ const routes = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      {
+        path: "/dashboard/addproduct",
+        element: <MyOrders></MyOrders>,
+      },
       {
         path: "/dashboard/addproduct",
         element: <AddProduct></AddProduct>,
