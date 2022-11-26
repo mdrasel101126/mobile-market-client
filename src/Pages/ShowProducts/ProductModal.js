@@ -50,9 +50,12 @@ const ProductModal = ({ selectedProduct, setSelectedProduct }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setSpinner(false);
         if (data.acknowledged) {
-          setSpinner(false);
           toast.success("Booking Successfull");
+          setSelectedProduct(null);
+        } else {
+          toast.error(data.message);
           setSelectedProduct(null);
         }
       })

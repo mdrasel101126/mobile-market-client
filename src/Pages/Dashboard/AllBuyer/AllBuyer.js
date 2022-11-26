@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const AllBuyer = () => {
-  const { data: allBuyer = [], isLoading } = useQuery({
+  const {
+    data: allBuyer = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allbuyer"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/allbuyer");
@@ -15,6 +20,22 @@ const AllBuyer = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
+  const handleDeleteBuyer = (id) => {
+    const sureDelete = window.confirm("Please Confirm Delete Buyer");
+    if (sureDelete) {
+      fetch(`http://localhost:5000/users/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount) {
+            refetch();
+            toast.success("Buyer Deleted Successfully");
+            console.log(data);
+          }
+        });
+    }
+  };
   return (
     <div className="my-8">
       <h1 className="text-xl text-center font-bold my-4">
@@ -27,7 +48,7 @@ const AllBuyer = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Role</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -37,7 +58,14 @@ const AllBuyer = () => {
                   <th>{index + 1}</th>
                   <td>{buyer.name}</td>
                   <td>{buyer.email}</td>
-                  <td>{buyer.role}</td>
+                  <td>
+                    <button
+                      onClick={() => handleDeleteBuyer(buyer._id)}
+                      className="btn btn-sm text-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
           </tbody>

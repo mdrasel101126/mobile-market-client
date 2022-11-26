@@ -1,3 +1,4 @@
+import Blogs from "../Pages/Bolgs/Blogs";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyer from "../Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
             <ShowProducts></ShowProducts>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
     ],
   },

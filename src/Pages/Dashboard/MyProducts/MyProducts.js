@@ -49,11 +49,19 @@ const MyProducts = () => {
                   <td>{product.postDate}</td>
                   <td>
                     {product.isSold ? (
-                      <p className="text-green-800">Sold</p>
+                      <p className="text-blue-700 font-bold">SOLD</p>
                     ) : (
-                      <button className="btn bg-primary bg-gradient-to-r from-primary to-secondary btn-sm">
-                        Available
-                      </button>
+                      <>
+                        <p className="text-blue-700 font-bold">
+                          AVAILABLE{" "}
+                          <span>
+                            {" "}
+                            <button className="btn bg-primary bg-gradient-to-r from-primary to-secondary btn-sm">
+                              Advertise
+                            </button>
+                          </span>
+                        </p>
+                      </>
                     )}
                   </td>
                 </tr>

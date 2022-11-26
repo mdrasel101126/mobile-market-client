@@ -45,7 +45,7 @@ const AllSeller = () => {
   const handleDeleteSeller = (id) => {
     const sureDelete = window.confirm("Please Confirm Delete Seller");
     if (sureDelete) {
-      fetch(`http://localhost:5000/deleteSeller/${id}`, {
+      fetch(`http://localhost:5000/users/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
