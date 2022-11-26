@@ -42,6 +42,22 @@ const AllSeller = () => {
       return;
     }
   };
+  const handleDeleteSeller = (id) => {
+    const sureDelete = window.confirm("Please Confirm Delete Seller");
+    if (sureDelete) {
+      fetch(`http://localhost:5000/deleteSeller/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount) {
+            refetch();
+            toast.success("Seller Deleted Successfully");
+            console.log(data);
+          }
+        });
+    }
+  };
   return (
     <div className="my-8">
       <h1 className="text-xl text-center font-bold my-4">
@@ -62,7 +78,12 @@ const AllSeller = () => {
               allSeller.map((seller, index) => (
                 <tr key={seller._id}>
                   <th>
-                    <button className="btn btn-sm text-red-600">Delete</button>
+                    <button
+                      onClick={() => handleDeleteSeller(seller._id)}
+                      className="btn btn-sm text-red-600"
+                    >
+                      Delete
+                    </button>
                   </th>
                   <td className="flex flex-row items-center">
                     <span> {seller.name}</span>

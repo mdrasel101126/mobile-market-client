@@ -68,7 +68,7 @@ const Dashboard = () => {
                 to="/dashboard/allbuyer"
                 className="btn btn-primary bg-gradient-to-r from-primary  to-secondary w-full text-white"
               >
-                My Buyers
+                All Buyers
               </Link>
             </li>
             <li className="mb-4">
@@ -76,7 +76,15 @@ const Dashboard = () => {
                 to="/dashboard/allseller"
                 className="btn btn-primary bg-gradient-to-r from-primary  to-secondary w-full text-white"
               >
-                My Sellers
+                All Sellers
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link
+                to=""
+                className="btn btn-primary bg-gradient-to-r from-primary  to-secondary w-full text-white"
+              >
+                Reported Itmes
               </Link>
             </li>
           </ul>
