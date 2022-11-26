@@ -16,6 +16,7 @@ const ProductModal = ({ selectedProduct, setSelectedProduct }) => {
     sellerName,
     sellerVerified,
     sellerEmail,
+    isSold,
   } = selectedProduct;
   const [spinner, setSpinner] = useState(false);
   const { user } = useContext(AuthContext);
@@ -39,6 +40,8 @@ const ProductModal = ({ selectedProduct, setSelectedProduct }) => {
       sellerName,
       sellerEmail,
       productId: _id,
+      image,
+      isSold,
     };
     //console.log(bookingProduct);
     fetch("http://localhost:5000/bookings", {

@@ -5,6 +5,8 @@ import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
 import ShowProducts from "../Pages/ShowProducts/ShowProducts";
 import PrivateRoute from "./PrivateRoute";
 
@@ -18,6 +20,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",
@@ -48,6 +51,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/dashboard/myorders",
@@ -68,6 +72,12 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/allbuyer",
         element: <AllBuyer></AllBuyer>,
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: async ({ params }) =>
+          await fetch(`http://localhost:5000/bookings/${params.id}`),
       },
     ],
   },

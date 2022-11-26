@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 import Spinner from "../../Shared/Spinner/Spinner";
 
@@ -39,14 +40,22 @@ const MyOrders = () => {
                 myOrders.map((order) => (
                   <tr key={order._id}>
                     <th>
-                      <button className="btn">X</button>
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img src={order.image} alt="" />
+                        </div>
+                      </div>
                     </th>
                     <td>{order.productName}</td>
                     <td>{order.price}</td>
                     <td>
-                      <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary btn-sm">
-                        Pay
-                      </button>
+                      {!order.isSold && !order.paid && (
+                        <Link to={`/dashboard/payment/${order._id}`}>
+                          <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary btn-sm">
+                            Pay
+                          </button>
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 ))}
