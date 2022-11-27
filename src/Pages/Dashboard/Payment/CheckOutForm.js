@@ -6,12 +6,13 @@ const CheckOutForm = ({ booking }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [success, setSuccess] = useState("");
+  const [completed, setCompleted] = useState(false);
   const [transactionId, setTransactionId] = useState("");
   const [processing, setProcessing] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const { price, userName, userEmail } = booking;
+  const { price, userName, userEmail, _id, sellerEmail, productId } = booking;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -68,8 +69,30 @@ const CheckOutForm = ({ booking }) => {
       return;
     }
     if (paymentIntent.status === "succeeded") {
-      setSuccess("Congrats! your payment completed");
-      setTransactionId(paymentIntent.id);
+      const payment = {
+        bookingId: _id,
+        productId,
+        transactionId: paymentIntent.id,
+        buyerName: userName,
+        buyerEmail: userEmail,
+        sellerEmail,
+      };
+      fetch("http://localhost:5000/payments", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            setCompleted(true);
+            setSuccess("Congrats! your payment completed");
+            setTransactionId(paymentIntent.id);
+          }
+        });
     }
     setProcessing(false);
   };
@@ -97,7 +120,7 @@ const CheckOutForm = ({ booking }) => {
         <button
           className="btn bg-gradient-to-r from-primary to-secondary btn-sm mt-5"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || completed}
         >
           Pay
         </button>

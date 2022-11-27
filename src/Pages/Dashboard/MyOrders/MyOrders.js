@@ -56,6 +56,12 @@ const MyOrders = () => {
                           </button>
                         </Link>
                       )}
+                      {order.isSold && order.paid && (
+                        <p className="text-green-700">Paid</p>
+                      )}
+                      {order.isSold && !order.paid && (
+                        <p className="text-red-700">Unavailable</p>
+                      )}
                     </td>
                   </tr>
                 ))}
