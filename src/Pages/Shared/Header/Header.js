@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const handleLogOut = () => {
     logOut()
@@ -20,9 +21,11 @@ const Header = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+      {user?.uid && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
       <li>
         <Link to="blogs">Blog</Link>
       </li>

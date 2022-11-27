@@ -49,6 +49,7 @@ const CheckOutForm = ({ booking }) => {
     if (error) {
       console.log(error);
       setCardError(error.message);
+      return;
     } else {
       setCardError("");
     }
