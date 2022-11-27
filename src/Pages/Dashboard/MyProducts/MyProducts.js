@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import el from "date-fns/esm/locale/el/index.js";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/UserContext";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
+  const [spinner, setSpinner] = useState(false);
   const {
     data: myProducts = [],
     isLoading,
@@ -37,15 +39,37 @@ const MyProducts = () => {
             toast.success("Product Deleted Successfully");
           }
         });
-    } else {
-      return;
     }
+  };
+  const handleAdvertiseProduct = (id) => {
+    setSpinner(true);
+    fetch(`http://localhost:5000/products/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem(
+          "mobile-market-sectret"
+        )}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          setSpinner(false);
+          refetch();
+          toast.success("Product Advertised Successfully");
+        } else {
+          toast.error(data.message);
+          setSpinner(false);
+        }
+      });
   };
   return (
     <div className="">
+      {spinner && <Spinner></Spinner>}
       <h1 className="text-2xl font-bold text-blue-800 my-8 text-center">
         My All Products
       </h1>
+
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -81,7 +105,12 @@ const MyProducts = () => {
                           AVAILABLE{" "}
                           <span>
                             {" "}
-                            <button className="btn bg-primary bg-gradient-to-r from-primary to-secondary btn-sm">
+                            <button
+                              onClick={() =>
+                                handleAdvertiseProduct(product._id)
+                              }
+                              className="btn bg-primary bg-gradient-to-r from-primary to-secondary btn-sm"
+                            >
                               Advertise
                             </button>
                           </span>
@@ -93,6 +122,11 @@ const MyProducts = () => {
               ))}
           </tbody>
         </table>
+        {myProducts.length === 0 && (
+          <p className="text-xl text-center text-red-600 font-semibold">
+            No Product Found!!!
+          </p>
+        )}
       </div>
     </div>
   );
