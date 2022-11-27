@@ -77,14 +77,14 @@ const AllSeller = () => {
             {allSeller &&
               allSeller.map((seller, index) => (
                 <tr key={seller._id}>
-                  <th>
+                  <td>
                     <button
                       onClick={() => handleDeleteSeller(seller._id)}
                       className="btn btn-sm text-red-600"
                     >
                       Delete
                     </button>
-                  </th>
+                  </td>
                   <td className="flex flex-row items-center">
                     <span> {seller.name}</span>
                     <span>

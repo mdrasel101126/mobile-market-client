@@ -11,7 +11,13 @@ const AllBuyer = () => {
   } = useQuery({
     queryKey: ["allbuyer"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allbuyer");
+      const res = await fetch("http://localhost:5000/allbuyer", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem(
+            "mobile-market-sectret"
+          )}`,
+        },
+      });
       const data = await res.json();
       console.log(data);
       return data;
@@ -25,6 +31,11 @@ const AllBuyer = () => {
     if (sureDelete) {
       fetch(`http://localhost:5000/users/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem(
+            "mobile-market-sectret"
+          )}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {

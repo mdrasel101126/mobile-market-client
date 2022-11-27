@@ -1,11 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/UserContext";
 import Spinner from "../../Shared/Spinner/Spinner";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  const { data: myProducts = [], isLoading } = useQuery({
+  const {
+    data: myProducts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["myproducts", user?.email],
     queryFn: async () => {
       const res = await fetch(
@@ -19,6 +24,23 @@ const MyProducts = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
+  const handleDeleteProduct = (id) => {
+    const sureDelete = window.confirm("Please! Confirm Delete This Product");
+    if (sureDelete) {
+      fetch(`http://localhost:5000/products/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            refetch();
+            toast.success("Product Deleted Successfully");
+          }
+        });
+    } else {
+      return;
+    }
+  };
   return (
     <div className="">
       <h1 className="text-2xl font-bold text-blue-800 my-8 text-center">
@@ -39,11 +61,14 @@ const MyProducts = () => {
             {myProducts &&
               myProducts.map((product) => (
                 <tr key={product._id}>
-                  <th>
-                    <button className="btn btn-warning btn-xs text-red-700">
-                      X
+                  <td>
+                    <button
+                      onClick={() => handleDeleteProduct(product._id)}
+                      className="btn btn-sm text-red-600"
+                    >
+                      Delete
                     </button>
-                  </th>
+                  </td>
                   <td>{product.productName}</td>
                   <td>{product.price}</td>
                   <td>{product.postDate}</td>
