@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/UserContext";
+import useUser from "../../hooks/useUser";
 import Spinner from "../Shared/Spinner/Spinner";
 
 const ProductModal = ({ selectedProduct, setSelectedProduct }) => {
@@ -20,8 +21,14 @@ const ProductModal = ({ selectedProduct, setSelectedProduct }) => {
   } = selectedProduct;
   const [spinner, setSpinner] = useState(false);
   const { user } = useContext(AuthContext);
+  const [isUser] = useUser(user?.email);
   const handleBookingProduct = (event) => {
     event.preventDefault();
+    if (!isUser) {
+      toast.error("Sorry!To Buy A Product , Create a User Account");
+      setSelectedProduct(null);
+      return;
+    }
     setSpinner(true);
     const form = event.target;
     const userName = form.userName.value;
