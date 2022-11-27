@@ -5,7 +5,11 @@ const useUser = (email) => {
   const [isUserLoading, setIsUserLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/user/${email}`)
+      fetch(`http://localhost:5000/users/user/${email}`, {
+        authorization: `Bearer ${localStorage.getItem(
+          "mobile-master-sectret"
+        )}`,
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -14,6 +18,6 @@ const useUser = (email) => {
         });
     }
   }, [email]);
-  return [isUser, setIsUserLoading];
+  return [isUser, isUserLoading];
 };
 export default useUser;

@@ -36,7 +36,7 @@ const UserContext = ({ children }) => {
   };
   const logOut = () => {
     setLoading(true);
-    localStorage.removeItem("mobile-master-sectret");
+    localStorage.removeItem("mobile-market-sectret");
     return signOut(auth);
   };
   const updateUserProfile = (name) => {

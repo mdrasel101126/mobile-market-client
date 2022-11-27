@@ -10,7 +10,7 @@ const useSecretToken = (email) => {
           if (data.token) {
             console.log(data);
             const sectretToken = data.token;
-            localStorage.setItem("mobile-master-sectret", sectretToken);
+            localStorage.setItem("mobile-market-sectret", sectretToken);
             setToken(sectretToken);
           }
         });

@@ -7,11 +7,11 @@ import Spinner from "../Pages/Shared/Spinner/Spinner";
 const UserRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useContext(AuthContext);
-  const [isSeller, isUserLoading] = useUser(user?.email);
+  const [isUser, isUserLoading] = useUser(user?.email);
   if (loading || isUserLoading) {
     return <Spinner></Spinner>;
   }
-  if (user?.uid && isSeller) {
+  if (user?.uid && isUser) {
     return children;
   }
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
