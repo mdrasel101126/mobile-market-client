@@ -5,11 +5,14 @@ const useUser = (email) => {
   const [isUserLoading, setIsUserLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/user/${email}`, {
-        authorization: `Bearer ${localStorage.getItem(
-          "mobile-master-sectret"
-        )}`,
-      })
+      fetch(
+        `https://mobile-market-server-delta.vercel.app/users/user/${email}`,
+        {
+          authorization: `Bearer ${localStorage.getItem(
+            "mobile-master-sectret"
+          )}`,
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

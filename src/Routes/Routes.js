@@ -118,7 +118,9 @@ const routes = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/bookings/${params.id}`),
+          await fetch(
+            `https://mobile-market-server-delta.vercel.app/bookings/${params.id}`
+          ),
       },
     ],
   },

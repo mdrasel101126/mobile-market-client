@@ -11,7 +11,9 @@ const ShowProducts = () => {
   const { data: showProducts, isLoading } = useQuery({
     queryKey: ["showProducts", id],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/products/${id}`);
+      const res = await fetch(
+        `https://mobile-market-server-delta.vercel.app/products/${id}`
+      );
       const data = await res.json();
       console.log(data);
       return data;

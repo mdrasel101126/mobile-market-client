@@ -16,7 +16,7 @@ const MyProducts = () => {
     queryKey: ["myproducts", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myproducts?email=${user?.email}`
+        `https://mobile-market-server-delta.vercel.app/myproducts?email=${user?.email}`
       );
       const data = await res.json();
       console.log(data);
@@ -29,7 +29,7 @@ const MyProducts = () => {
   const handleDeleteProduct = (id) => {
     const sureDelete = window.confirm("Please! Confirm Delete This Product");
     if (sureDelete) {
-      fetch(`http://localhost:5000/products/${id}`, {
+      fetch(`https://mobile-market-server-delta.vercel.app/products/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -43,7 +43,7 @@ const MyProducts = () => {
   };
   const handleAdvertiseProduct = (id) => {
     setSpinner(true);
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://mobile-market-server-delta.vercel.app/products/${id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem(

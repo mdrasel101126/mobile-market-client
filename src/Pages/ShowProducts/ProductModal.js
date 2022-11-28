@@ -51,7 +51,7 @@ const ProductModal = ({ selectedProduct, setSelectedProduct }) => {
       isSold,
     };
     //console.log(bookingProduct);
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://mobile-market-server-delta.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

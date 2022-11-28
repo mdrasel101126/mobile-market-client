@@ -11,7 +11,7 @@ const AdvertisedItems = () => {
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/advertised")
+      .get("https://mobile-market-server-delta.vercel.app/advertised")
       .then(function (response) {
         // handle success
         setSpinner(false);

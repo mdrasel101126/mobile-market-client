@@ -9,7 +9,7 @@ const MobileCategories = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://mobile-market-server-delta.vercel.app/categories")
       .then(function (response) {
         // handle success
         setSpinner(false);

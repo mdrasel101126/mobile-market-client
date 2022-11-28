@@ -12,7 +12,9 @@ const AllSeller = () => {
   } = useQuery({
     queryKey: ["allseller"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allseller");
+      const res = await fetch(
+        "https://mobile-market-server-delta.vercel.app/allseller"
+      );
       const data = await res.json();
       console.log(data);
       return data;
@@ -26,9 +28,12 @@ const AllSeller = () => {
     console.log(id);
     const sureVerify = window.confirm("Please Confirm Verify Seller");
     if (sureVerify) {
-      fetch(`http://localhost:5000/verifySeller/${id}`, {
-        method: "PUT",
-      })
+      fetch(
+        `https://mobile-market-server-delta.vercel.app/verifySeller/${id}`,
+        {
+          method: "PUT",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.acknowledged) {
@@ -45,7 +50,7 @@ const AllSeller = () => {
   const handleDeleteSeller = (id) => {
     const sureDelete = window.confirm("Please Confirm Delete Seller");
     if (sureDelete) {
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`https://mobile-market-server-delta.vercel.app/users/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

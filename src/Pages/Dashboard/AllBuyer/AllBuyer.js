@@ -11,13 +11,16 @@ const AllBuyer = () => {
   } = useQuery({
     queryKey: ["allbuyer"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allbuyer", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem(
-            "mobile-market-sectret"
-          )}`,
-        },
-      });
+      const res = await fetch(
+        "https://mobile-market-server-delta.vercel.app/allbuyer",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "mobile-market-sectret"
+            )}`,
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
       return data;
@@ -29,7 +32,7 @@ const AllBuyer = () => {
   const handleDeleteBuyer = (id) => {
     const sureDelete = window.confirm("Please Confirm Delete Buyer");
     if (sureDelete) {
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`https://mobile-market-server-delta.vercel.app/users/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem(

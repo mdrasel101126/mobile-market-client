@@ -16,6 +16,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
     usageTime,
     sellerName,
     sellerVerified,
+    purchaseDate,
     _id,
   } = product;
   const { user } = useContext(AuthContext);
@@ -40,7 +41,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
         productId: _id,
         userEmail: user?.email,
       };
-      fetch("http://localhost:5000/reportedItems", {
+      fetch("https://mobile-market-server-delta.vercel.app/reportedItems", {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -76,6 +77,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
         <p>Location: {sellerLocation}</p>
         <p>Resale Price: ${price}</p>
         <p>Original Price: ${originalPrice}</p>
+        <p>Purchaged Date: {purchaseDate}</p>
         <p>Years of Use: {usageTime}</p>
         <p>Posted On: {postDate}</p>
         <div className="flex flex-row items-center">

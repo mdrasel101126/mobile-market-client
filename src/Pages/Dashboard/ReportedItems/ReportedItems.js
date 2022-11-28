@@ -11,13 +11,16 @@ const ReportedItems = () => {
   } = useQuery({
     queryKey: ["reportedItems"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reportedItems", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem(
-            "mobile-market-sectret"
-          )}`,
-        },
-      });
+      const res = await fetch(
+        "https://mobile-market-server-delta.vercel.app/reportedItems",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "mobile-market-sectret"
+            )}`,
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
       return data;
@@ -32,14 +35,17 @@ const ReportedItems = () => {
     const sureDelete = window.confirm("Please! Confirm Delete This Product");
     if (sureDelete) {
       setSpinner(true);
-      fetch(`http://localhost:5000/reportedItems/${id}`, {
-        method: "DELETE",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem(
-            "mobile-market-sectret"
-          )}`,
-        },
-      })
+      fetch(
+        `https://mobile-market-server-delta.vercel.app/reportedItems/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "mobile-market-sectret"
+            )}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.acknowledged) {

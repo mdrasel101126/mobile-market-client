@@ -11,7 +11,9 @@ const AddProduct = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch(
+        "https://mobile-market-server-delta.vercel.app/categories"
+      );
       const data = await res.json();
       console.log(data);
       return data;
@@ -45,7 +47,7 @@ const AddProduct = () => {
         console.log(formdata);
         data.image = formdata.data.display_url;
         data.postDate = format(new Date(), "PP");
-        fetch("http://localhost:5000/products", {
+        fetch("https://mobile-market-server-delta.vercel.app/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",

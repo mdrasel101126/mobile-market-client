@@ -4,7 +4,7 @@ const useSecretToken = (email) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/jwt?email=${email}`)
+      fetch(`https://mobile-market-server-delta.vercel.app/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.token) {

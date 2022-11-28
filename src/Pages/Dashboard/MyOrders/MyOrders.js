@@ -10,7 +10,7 @@ const MyOrders = () => {
     queryKey: ["myorders", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings?email=${user?.email}`,
+        `https://mobile-market-server-delta.vercel.app/bookings?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem(
