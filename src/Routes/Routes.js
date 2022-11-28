@@ -3,6 +3,7 @@ import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyer from "../Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import DashboardCommon from "../Pages/Dashboard/DashboardCommon/DashboardCommon";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../Pages/Dashboard/Payment/Payment";
@@ -61,6 +62,10 @@ const routes = createBrowserRouter([
     ),
     errorElement: <DisplayError></DisplayError>,
     children: [
+      {
+        path: "/dashboard",
+        element: <DashboardCommon></DashboardCommon>,
+      },
       {
         path: "/dashboard/myorders",
         element: (

@@ -40,6 +40,9 @@ const ShowProducts = () => {
           setSelectedProduct={setSelectedProduct}
         ></ProductModal>
       )}
+      {showProducts?.length === 0 && (
+        <p className="text-xl text-red-600 text-center">No Product Found!!</p>
+      )}
     </div>
   );
 };
