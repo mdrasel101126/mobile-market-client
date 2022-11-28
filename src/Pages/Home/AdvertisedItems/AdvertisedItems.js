@@ -46,7 +46,7 @@ const AdvertisedItems = () => {
           <Slider {...settings}>
             {advertisedProducts &&
               advertisedProducts.map((product) => (
-                <div className=" m-4">
+                <div key={product._id} className=" m-4">
                   <figure className="p-4">
                     <img
                       src={product?.image}

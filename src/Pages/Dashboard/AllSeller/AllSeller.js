@@ -52,6 +52,11 @@ const AllSeller = () => {
     if (sureDelete) {
       fetch(`https://mobile-market-server-delta.vercel.app/users/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem(
+            "mobile-market-sectret"
+          )}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {
