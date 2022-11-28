@@ -29,8 +29,10 @@ const MyOrders = () => {
   }
 
   return (
-    <div>
-      <h1>Your All Orders</h1>
+    <div className="my-16">
+      <h1 className="text-2xl text-blue-800 text-center my-6">
+        Your All Orders
+      </h1>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">

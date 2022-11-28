@@ -19,41 +19,52 @@ const Header = () => {
   const items = (
     <React.Fragment>
       <li>
-        <Link to="/">Home</Link>
+        <Link className="font-bold" to="/">
+          Home
+        </Link>
       </li>
       {user?.uid && (
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link className="font-bold" to="/dashboard">
+            Dashboard
+          </Link>
         </li>
       )}
       <li>
-        <Link to="blogs">Blog</Link>
+        <Link className="font-bold" to="blogs">
+          Blog
+        </Link>
       </li>
       <>
         {user?.uid ? (
           <>
             <li>
-              <button onClick={handleLogOut} className="btn btn-ghost">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-info  rounded-3xl"
+              >
                 Log out
               </button>
             </li>
           </>
         ) : (
           <li>
-            <Link to="/login">Login</Link>
+            <Link className="font-bold" to="/login">
+              Login
+            </Link>
           </li>
         )}
       </>
     </React.Fragment>
   );
   return (
-    <div className="navbar flex justify-between">
+    <div className="navbar flex justify-between bg-neutral lg:text-neutral-content">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -75,9 +86,16 @@ const Header = () => {
         </div>
         <>
           <Link to="/">
-            <img className="w-16 h-16 hidden sm:block" src={logo} alt="" />
+            <img
+              className="w-16 h-16 hidden sm:block rounded-full"
+              src={logo}
+              alt=""
+            />
           </Link>
-          <Link to="/" className="text-xl font-bold">
+          <Link
+            to="/"
+            className="text-xl font-bold ml-2 text-white lg:text-neutral-content "
+          >
             MobileMarket
           </Link>
         </>

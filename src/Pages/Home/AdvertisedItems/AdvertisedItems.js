@@ -36,7 +36,7 @@ const AdvertisedItems = () => {
     <>
       {spinner && <Spinner></Spinner>}
       {advertisedProducts?.length > 0 && (
-        <div className="w-11/12 mx-auto">
+        <div className="w-11/12 mx-auto mt-16">
           <h1 className="text-center text-xl font-bold">
             Advertised Items for You
           </h1>

@@ -9,7 +9,7 @@ const Footer = () => {
       <footer className="footer p-10 ">
         <div>
           <Link to="/">
-            <img className="w-16 h-16" src={logo} alt="" />
+            <img className="w-16 h-16 rounded-full" src={logo} alt="" />
           </Link>
           <p>
             <Link to="/" className="text-xl font-bold">
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <p className="text-center">Copyright © 2022 - All right reserved</p>
+      <p className="text-center">Copyright © {year} - All right reserved</p>
     </div>
   );
 };

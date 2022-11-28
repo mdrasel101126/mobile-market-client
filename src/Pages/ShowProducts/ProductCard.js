@@ -74,12 +74,13 @@ const ProductCard = ({ product, setSelectedProduct }) => {
             Report
           </button>
         </div>
-        <p>Location: {sellerLocation}</p>
-        <p>Resale Price: ${price}</p>
+        <p>Posted On: {postDate}</p>
+        <p className="font-semibold">Resale Price: ${price}</p>
         <p>Original Price: ${originalPrice}</p>
         <p>Purchaged Date: {purchaseDate}</p>
         <p>Years of Use: {usageTime}</p>
-        <p>Posted On: {postDate}</p>
+        <p>Location: {sellerLocation}</p>
+
         <div className="flex flex-row items-center">
           <p>Seller Name: {sellerName}</p>
           {sellerVerified && (

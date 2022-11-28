@@ -51,7 +51,7 @@ const AllBuyer = () => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-20">
       <h1 className="text-xl text-center font-bold my-4">
         All Buyers Of This Website
       </h1>

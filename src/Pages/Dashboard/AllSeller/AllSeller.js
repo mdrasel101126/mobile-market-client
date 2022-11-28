@@ -64,7 +64,7 @@ const AllSeller = () => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-20">
       <h1 className="text-xl text-center font-bold my-4">
         All Sellers Of This Website
       </h1>
@@ -116,6 +116,9 @@ const AllSeller = () => {
           </tbody>
         </table>
       </div>
+      {allSeller?.length === 0 && (
+        <p className="text-xl text-red-600 text-center">No Seller Found!!</p>
+      )}
     </div>
   );
 };

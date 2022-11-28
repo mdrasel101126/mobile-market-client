@@ -64,7 +64,7 @@ const MyProducts = () => {
       });
   };
   return (
-    <div className="">
+    <div className="my-20">
       {spinner && <Spinner></Spinner>}
       <h1 className="text-2xl font-bold text-blue-800 my-8 text-center">
         My All Products

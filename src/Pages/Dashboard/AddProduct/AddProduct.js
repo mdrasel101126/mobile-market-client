@@ -76,7 +76,7 @@ const AddProduct = () => {
     return <Spinner></Spinner>;
   }
   return (
-    <div>
+    <div className="my-20">
       {spinner && <Spinner></Spinner>}
       <div className="w-11/12 md:w-4/5 lg:w-3/5 mx-auto mt-16 bg-base-200 rounded-xl p-6">
         <h1 className="text-3xl font-bold text-center text-violet-800 mb-6">

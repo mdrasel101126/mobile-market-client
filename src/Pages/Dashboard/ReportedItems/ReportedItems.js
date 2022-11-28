@@ -57,7 +57,7 @@ const ReportedItems = () => {
     }
   };
   return (
-    <div>
+    <div className="my-20">
       {spinner && <Spinner></Spinner>}
       <h1>All Reported Products</h1>
       <div>
