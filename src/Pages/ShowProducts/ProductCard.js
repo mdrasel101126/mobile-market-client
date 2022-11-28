@@ -1,4 +1,3 @@
-import is from "date-fns/esm/locale/is/index.js";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";

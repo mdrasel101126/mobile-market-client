@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import el from "date-fns/esm/locale/el/index.js";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/UserContext";

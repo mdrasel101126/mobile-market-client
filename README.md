@@ -26,3 +26,7 @@
 - Mongodb
 - NodeJS
 - ExpressJS
+
+### adminEmail: elon@mask.com
+
+### adminPassword: 123456
