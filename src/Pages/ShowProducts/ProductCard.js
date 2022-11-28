@@ -1,5 +1,9 @@
-import React from "react";
+import is from "date-fns/esm/locale/is/index.js";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
+import { AuthContext } from "../../Context/UserContext";
+import useUser from "../../hooks/useUser";
 
 const ProductCard = ({ product, setSelectedProduct }) => {
   const {
@@ -12,14 +16,63 @@ const ProductCard = ({ product, setSelectedProduct }) => {
     usageTime,
     sellerName,
     sellerVerified,
+    _id,
   } = product;
+  const { user } = useContext(AuthContext);
+  const [isUser] = useUser(user?.email);
+  const handleReportItem = (id) => {
+    if (!isUser) {
+      toast.error("Sorry!! Create an User Account To Report Product");
+      return;
+    }
+    const sureReport = window.confirm("Please! Confirm Report This Product");
+    if (sureReport) {
+      const reportedItem = {
+        image,
+        productName,
+        sellerLocation,
+        price,
+        originalPrice,
+        postDate,
+        usageTime,
+        sellerName,
+        sellerVerified,
+        productId: _id,
+        userEmail: user?.email,
+      };
+      fetch("http://localhost:5000/reportedItems", {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem(
+            "mobile-market-sectret"
+          )}`,
+        },
+        body: JSON.stringify(reportedItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success("This Product Reported Successfully");
+          }
+        });
+    }
+  };
   return (
     <div className="card  shadow-xl">
       <figure>
         <img className="w-full h-52" src={image} alt="Shoes" />
       </figure>
       <div className="p-4">
-        <h2 className="font-bold">Product Name: {productName}</h2>
+        <div className="flex flex-row justify-between">
+          <h2 className="font-bold">Product Name: {productName}</h2>
+          <button
+            onClick={() => handleReportItem(_id)}
+            className="btn btn-xs text-red-600"
+          >
+            Report
+          </button>
+        </div>
         <p>Location: {sellerLocation}</p>
         <p>Resale Price: ${price}</p>
         <p>Original Price: ${originalPrice}</p>
