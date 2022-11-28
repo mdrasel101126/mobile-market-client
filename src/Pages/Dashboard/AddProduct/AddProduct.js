@@ -51,6 +51,9 @@ const AddProduct = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem(
+              "mobile-market-sectret"
+            )}`,
           },
           body: JSON.stringify(data),
         })
