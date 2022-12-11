@@ -6,7 +6,7 @@ import MobileCategories from "../MobileCategories/MobileCategories";
 
 const Home = () => {
   return (
-    <div>
+    <div className="px-6">
       <HomePageBanner></HomePageBanner>
       <MobileCategories></MobileCategories>
       <AdvertisedItems></AdvertisedItems>
