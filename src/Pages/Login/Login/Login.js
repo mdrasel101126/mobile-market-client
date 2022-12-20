@@ -34,7 +34,7 @@ const Login = () => {
         console.log(result.user);
         setUserEmail(data.email);
         setSpinner(false);
-        toast.success("Successfully Registered");
+        toast.success("Login Successfull");
         //console.log(result.user);
       })
       .catch((error) => {
