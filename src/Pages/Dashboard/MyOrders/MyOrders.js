@@ -79,7 +79,7 @@ const MyOrders = () => {
         </div>
       </div>
       {myOrders?.length === 0 && (
-        <p className="text-xl text-red-600 text-center">No Buyer Found!!</p>
+        <p className="text-xl text-red-600 text-center">No Products Found!!</p>
       )}
     </div>
   );
