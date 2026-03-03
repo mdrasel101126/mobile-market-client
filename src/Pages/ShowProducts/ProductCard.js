@@ -59,7 +59,7 @@ const ProductCard = ({ product, setSelectedProduct }) => {
     }
   };
   return (
-    <div className="card  shadow-xl m-6">
+    <div className="card shadow-lg  md:shadow-xl m-4 md:m-6">
       <figure>
         <img className="w-full h-52" src={image} alt="Shoes" />
       </figure>
