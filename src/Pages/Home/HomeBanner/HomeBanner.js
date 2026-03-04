@@ -3,7 +3,7 @@ import React from "react";
 const HomeBanner = () => {
   return (
     <div>
-      <h1>Hello Home Banner</h1>
+      <h1>Home Banner</h1>
     </div>
   );
 };
